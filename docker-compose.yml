@@ -1,43 +1,82 @@
 version: '3.8'
+
 services:
-  db:
-    image: postgres:15
-    restart: unless-stopped
+  # --- Serviço do PostgreSQL ---
+  db-postgres:
+    image: postgres:15-alpine  # Você pode escolher a versão que quiser
+    container_name: SOWeb_postgres
+    restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: cruddb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: petshop
     ports:
-      - "5432:5432"
+      - "5432:5432" # Expõe a porta 5432 do container para a porta 5432 da sua máquina
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
 
-  web:
-    build: .
-    restart: unless-stopped
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: "postgresql://user:password@db:5432/cruddb"
-      FRONTEND_ORIGIN: "http://localhost:5500"
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./:/app:cached
-
+    # --- Serviço do pgAdmin ---
   pgadmin:
     image: dpage/pgadmin4:latest
-    restart: unless-stopped
+    container_name: meu_pgadmin
+    restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: admin@email.com  # Email que você usará para logar
+      PGADMIN_DEFAULT_PASSWORD: senha_forte_pgadmin # Senha que você usará para logar
     ports:
-      - "8080:80"
-    depends_on:
-      - db
+      - "5050:80" # Você vai acessar o pgAdmin pela porta 5050 da sua máquina
     volumes:
-      - pgadmin_data:/var/lib/pgadmin
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - db-postgres # Garante que o pgAdmin inicie depois do banco
 
+  # --- Serviço do seu Backend (Exemplo) ---
+  # Descomente e ajuste esta parte quando seu backend estiver "dockerizado"
+  # meu-backend:
+  #   build: . # Assume que existe um 'Dockerfile' na raiz
+  #   container_name: meu_backend_api
+  #   ports:
+  #     - "8080:8080" # Mapeia a porta do seu app (ex: 8080)
+  #   environment:
+  #     # Passa as URLs de conexão para seu app
+  #     DB_PG_URL: jdbc:postgresql://db-postgres:5432/minha_api_db_pg
+  #     DB_PG_USER: admin_pg
+  #     DB_PG_PASS: senha_forte_pg
+  #     DB_MYSQL_URL: jdbc:mysql://db-mysql:3306/minha_api_db_mysql
+  #     DB_MYSQL_USER: admin_mysql
+  #     DB_MYSQL_PASS: senha_forte_mysql
+  #   depends_on:
+  #     - db-postgres # Garante que os bancos iniciem antes do seu backend
+  #     - db-mysql
+
+  # Serviço do Backend (API Python)
+  backend:
+    build: .
+    container_name: petshop_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "postgresql://admin:12345@db-postgres:5432/petshop"
+    volumes:
+      - ./:/app:cached
+    depends_on:
+      - db-postgres
+
+  # Serviço da View (frontend estático servido por nginx)
+  frontend:
+    image: nginx:alpine
+    container_name: petshop_frontend
+    restart: always
+    ports:
+      - "5500:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - backend
+
+# --- Volumes ---
+# Isso garante que seus dados não sejam perdidos quando você parar os containers
 volumes:
-  db_data:
-  pgadmin_data:
+  postgres-data:
+  pgadmin-data:
