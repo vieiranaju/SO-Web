@@ -19,7 +19,7 @@ COPY . /app
 
 EXPOSE 8000
 
-ENV DATABASE_URL="postgresql://postgres:postgres@db:5432/postgres"
+ENV DATABASE_URL="postgresql://user:password@db:5432/cruddb"
 
 # Run uvicorn
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
