@@ -1,0 +1,1048 @@
+/* ===== RESET E TEMA NOVO (AZUL E LARANJA - TEMA MISTO) ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-primaria: #3b8de4; /* Azul (para a barra E serviços) */
+    --cor-secundaria: #f0f4f8; /* Fundo claro (geral) */
+    --cor-texto: #333d48;
+    --cor-branca: #ffffff;
+    
+    /* CORES LARANJA (PARA DESTAQUES) */
+    --cor-laranja: #fd7e14;
+    --cor-laranja-claro: #fff4e6;
+    
+    --sombra-suave: 0 8px 25px rgba(0,0,0,.08);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background: var(--cor-secundaria);
+    color: var(--cor-texto);
+}
+
+.conteiner {
+    width: min(1100px, 92%);
+    margin-inline: auto;
+}
+
+/* ===== CABEÇALHO (NAVEGAÇÃO AZUL) ===== */
+.navbar {
+    background: var(--cor-primaria); /* Barra azul */
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+}
+
+.navbar .conteiner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cor-branca); /* Logo branco */
+    text-decoration: none;
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: var(--cor-branca); /* Links brancos */
+    font-weight: 600;
+    opacity: 0.85;
+}
+.navbar nav a:hover,
+.navbar nav a.ativo {
+    color: var(--cor-branca);
+    opacity: 1;
+}
+
+.botao-nav {
+    background: var(--cor-laranja); /* Botão de ação laranja */
+    color: var(--cor-branca);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .2s ease;
+}
+.botao-nav:hover {
+    filter: brightness(1.1);
+}
+
+
+/* ===== BANNER (HERO) ===== */
+.hero {
+    /* ADICIONE A URL DA SUA IMAGEM DE CACHORROS AQUI */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../Figuras/dogos.jpg') center/cover no-repeat;
+    
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--cor-branca);
+    padding: 0 1rem;
+}
+
+/* ... (O .hero h1 e p não mudam) ... */
+.conteudo-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+}
+
+.conteudo-hero p {
+    font-size: 1.1rem;
+    margin: 1rem auto 2rem;
+    max-width: 600px;
+}
+
+.botao-principal {
+    background: var(--cor-laranja); /* Botão principal laranja */
+    color: var(--cor-branca);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all .2s ease;
+}
+.botao-principal:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+
+/* ===== SEÇÃO DE SERVIÇOS (COM ACENTOS AZUIS) ===== */
+.servicos {
+    padding: 4rem 0;
+}
+
+.servicos h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.servico-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+    gap: 2rem;
+}
+
+.servico-imagem {
+    flex: 1;
+    text-align: center;
+}
+
+.servico-imagem img {
+    max-width: 100%;
+    height: auto;
+    max-height: 350px;
+    display: block;
+    margin: 0 auto;
+}
+
+.servico-texto {
+    flex: 1;
+    padding: 0 2rem;
+}
+
+.servico-texto h3 {
+    color: var(--cor-primaria); /* MUDANÇA: Título da seção azul */
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.servico-texto p {
+    margin-bottom: 1.5rem;
+}
+
+.botao-card {
+    background: var(--cor-branca);
+    color: var(--cor-primaria); /* MUDANÇA: Botão azul */
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    display: inline-block;
+    transition: all .2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,.05);
+}
+.botao-card:hover {
+    background: var(--cor-primaria); /* MUDANÇA: Hover azul */
+    color: var(--cor-branca);
+    box-shadow: 0 6px 15px rgba(0,0,0,.1);
+    transform: translateY(-1px);
+}
+
+.servico-item.reverso {
+    flex-direction: row-reverse;
+}
+
+
+/* ===== ESTILOS PARA AS ABAS (TABS) (AZUL) ===== */
+
+.tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #eee;
+}
+
+.tab-botao {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    background: none;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transform: translateY(2px);
+}
+
+.tab-botao:hover {
+    color: var(--cor-primaria); /* MUDANÇA: Hover azul */
+}
+
+.tab-botao.ativo {
+    color: var(--cor-primaria); /* MUDANÇA: Aba ativa azul */
+    border-bottom-color: var(--cor-primaria);
+}
+
+/* O CÉREBRO DO CSS: Esconder e Mostrar os painéis com FADE + SLIDE-UP */
+.tabs-content {
+    display: grid;
+}
+
+.tab-painel {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, visibility 0.5s, transform 0.5s ease-out;
+}
+
+.tab-painel.ativo {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* ===== SEÇÃO 3: SOBRE NÓS (FUNDO LARANJA) ===== */
+.sobre-nos-secao {
+    padding: 4rem 0;
+    background: var(--cor-laranja-claro); /* Fundo laranja claro (Mantido) */
+}
+
+.sobre-nos-grid {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.sobre-nos-imagem {
+    flex: 1;
+}
+
+.sobre-nos-imagem img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.sobre-nos-texto {
+    flex: 1;
+    padding: 0 2rem;
+}
+
+.sobre-nos-texto h2 {
+    font-size: 2rem;
+    color: var(--cor-laranja); /* Título laranja (Mantido) */
+    margin-bottom: 1rem;
+}
+
+.sobre-nos-texto ul {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.sobre-nos-texto ul li {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.icone-check {
+    color: var(--cor-laranja); /* Ícone laranja (Mantido) */
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+
+/* ===== RODAPÉ ===== */
+.rodape {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #ddd;
+    color: var(--cor-texto);
+}
+
+/* ===== AJUSTES RESPONSIVOS ===== */
+@media (max-width: 700px) {
+    .navbar .conteiner {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .servico-item, .servico-item.reverso {
+        flex-direction: column; 
+        text-align: center;
+    }
+
+    .servico-imagem {
+        width: 100%;
+    }
+    
+    .servico-imagem img {
+        max-height: 250px;
+    }
+
+    .servico-texto {
+        padding: 2rem 1rem;
+    }
+    
+    /* Sobre Nós responsivo */
+    .sobre-nos-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .sobre-nos-texto {
+        padding: 2rem 0;
+    }
+
+    .sobre-nos-texto ul li {
+        justify-content: center;
+    }
+}
+
+/* ===== ESTILOS DA PÁGINA DE AGENDA ===== */
+
+.agenda-secao {
+    padding: 3rem 0;
+}
+
+.agenda-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #eee;
+}
+
+.agenda-header h2 {
+    font-size: 2rem;
+    color: var(--cor-primaria);
+}
+
+.agenda-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Calendário maior, lista menor */
+    gap: 2rem;
+}
+
+/* Estilos do Calendário */
+.calendario-container {
+    background: var(--cor-branca);
+    box-shadow: var(--sombra-suave);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.calendario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendario-header h3 {
+    color: var(--cor-texto);
+    font-weight: 700;
+}
+
+.nav-mes {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+    cursor: pointer;
+}
+
+.calendario-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.dia-semana {
+    font-weight: 600;
+    text-align: center;
+    color: var(--cor-muted, #8492a6); /* Fallback */
+    font-size: 0.9rem;
+}
+
+.dia-calendario {
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dia-calendario:hover {
+    background: #f0f0f0;
+}
+
+.dia-calendario.outro-mes {
+    color: #ccc;
+}
+
+.dia-calendario.hoje {
+    background: var(--cor-primaria);
+    color: var(--cor-branca);
+    font-weight: 700;
+}
+
+.dia-calendario.com-evento {
+    font-weight: 700;
+    position: relative;
+}
+
+/* Bolinha de evento */
+.dia-calendario.com-evento::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cor-laranja);
+}
+
+/* Estilos da Lista de Agendamentos */
+.lista-agendamentos {
+    background: var(--cor-branca);
+    box-shadow: var(--sombra-suave);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.lista-agendamentos h3 {
+    font-size: 1.25rem;
+    color: var(--cor-texto);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.agendamento-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.agendamento-item:last-child {
+    border-bottom: none;
+}
+
+.agendamento-item .hora {
+    font-weight: 700;
+    color: var(--cor-primaria);
+}
+
+.agendamento-item .nome-pet {
+    font-weight: 600;
+}
+
+.agendamento-item .servico {
+    font-size: 0.9rem;
+    color: var(--cor-muted, #8492a6);
+}
+
+/* Estilos da Lista de Agendamentos */
+/* ... (outros estilos da lista) ... */
+
+.agendamento-item.vago {
+    opacity: 0.9;
+    background-color: #e6f7ff; 
+    cursor: pointer; 
+    border: 1px dashed var(--cor-primaria); 
+    margin: 0.5rem 0;
+    padding: 0.75rem 1rem; 
+    border-radius: 8px; 
+    transition: all 0.2s ease-in-out; 
+}
+
+.agendamento-item.vago:hover {
+    background-color: var(--cor-primaria); 
+    color: var(--cor-branca); 
+    border-color: var(--cor-primaria); 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 10px rgba(0,0,0,.1); 
+    opacity: 1; 
+}
+
+.agendamento-item.vago:hover .hora,
+.agendamento-item.vago:hover .nome-pet {
+    color: var(--cor-branca);
+}
+
+/* Ajustes responsivos para a agenda */
+@media (max-width: 900px) {
+    .agenda-grid {
+        grid-template-columns: 1fr; /* Empilha o calendário e a lista */
+    }
+
+    .lista-agendamentos {
+        margin-top: 2rem;
+    }
+}
+
+/* ===== ESTILOS DO FORMULÁRIO DE AGENDA ===== */
+
+.formulario-agenda {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ocupa as duas colunas */
+.form-grupo:nth-child(1),
+.form-grupo:nth-child(2) {
+    grid-column: 1 / -1;
+}
+
+.formulario-agenda label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.formulario-agenda input,
+.formulario-agenda select {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--cor-secundaria);
+}
+
+.formulario-agenda input[readonly] {
+    background: #eee;
+    color: #777;
+}
+
+/* Botão do formulário */
+.formulario-agenda button {
+    grid-column: 1 / -1; /* Ocupa as duas colunas */
+    margin-top: 1rem;
+}
+
+/* ===== ESTILOS DA PÁGINA DE VACINAS ===== */
+
+/* Estilo da Barra de Busca */
+.filtro-container {
+    margin-bottom: 2rem;
+}
+
+.filtro-container input {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--cor-branca);
+    box-shadow: 0 4px 10px rgba(0,0,0,.03);
+}
+
+/* Container da Tabela (para responsividade) */
+.tabela-container {
+    width: 100%;
+    overflow-x: auto; /* Permite rolar a tabela horizontalmente no celular */
+    background: var(--cor-branca);
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+}
+
+/* Estilo da Tabela */
+.tabela-vacinas {
+    width: 100%;
+    border-collapse: collapse; /* Tira espaço entre células */
+}
+
+.tabela-vacinas th,
+.tabela-vacinas td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+/* Cabeçalho da Tabela (Azul) */
+.tabela-vacinas th {
+    background: var(--cor-primaria);
+    color: var(--cor-branca);
+    font-weight: 600;
+}
+
+/* Tira a borda da última linha */
+.tabela-vacinas tr:last-child td {
+    border-bottom: none;
+}
+
+/* Efeito "Zebrado" nas linhas */
+.tabela-vacinas tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Botão de "Editar" na tabela (Laranja) */
+.botao-tabela {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: var(--cor-laranja);
+    color: var(--cor-branca);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.botao-tabela:hover {
+    filter: brightness(1.1);
+}
+
+/* ===== ESTILOS DA PÁGINA DE LOGIN (VERSÃO SPLIT) ===== */
+
+.body-login {
+    background: var(--cor-secundaria); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+/* O "CARD" PRINCIPAL */
+.login-card-split {
+    max-width: 900px; /* Mais largo */
+    width: 100%;
+    background: var(--cor-branca);
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    overflow: hidden; /* Crucial para o border-radius funcionar */
+    
+    /* A MÁGICA: Grid de duas colunas */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+/* COLUNA 1: IMAGEM */
+.login-split-imagem {
+    /* ADICIONE UMA BOA IMAGEM DE PET AQUI 
+      (uma vertical ou quadrada funciona melhor)
+    */
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../Figuras/imagem-login.avif') center/cover no-repeat;
+    
+    padding: 2.5rem;
+    color: var(--cor-branca);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Alinha o texto na parte de baixo */
+}
+
+.login-split-imagem h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.login-split-imagem p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+
+/* COLUNA 2: FORMULÁRIO */
+.login-split-form {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o form verticalmente */
+}
+
+.login-split-form h3 {
+    font-size: 1.5rem;
+    color: var(--cor-texto);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Reutilizando os estilos do formulário que já tínhamos */
+.form-grupo-login {
+    margin-bottom: 1rem;
+}
+
+.form-grupo-login label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.form-grupo-login input {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--cor-secundaria);
+}
+
+.erro-login {
+    color: #d93025; /* Vermelho de erro */
+    font-weight: 600;
+    margin-top: 1rem;
+    text-align: center;
+    display: none; /* Escondido por padrão */
+}
+
+
+/* RESPONSIVO: Faz as colunas empilharem no celular */
+@media (max-width: 800px) {
+    .login-card-split {
+        grid-template-columns: 1fr; /* Coluna única */
+    }
+    
+    .login-split-imagem {
+        min-height: 250px; /* Garante altura mínima para a imagem */
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* ===== ESTILOS DO NOVO RODAPÉ ===== */
+
+.rodape {
+    /* MUDANÇA: O rodapé agora é azul para se destacar */
+    background: var(--cor-primaria);
+    color: var(--cor-branca);
+    padding: 3rem 0 0 0; /* Mais padding no topo */
+    margin-top: 4rem; /* Mais espaço antes dele */
+}
+
+.rodape-grid {
+    display: grid;
+    /* Três colunas em telas grandes */
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.rodape-coluna {
+    font-size: 0.95rem;
+}
+
+.rodape-coluna .logo {
+    color: var(--cor-branca); /* Logo branco no fundo azul */
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.rodape-coluna h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--cor-branca);
+}
+
+.rodape-coluna p {
+    color: var(--cor-branca);
+    opacity: 0.8;
+}
+
+.rodape-coluna ul {
+    list-style: none;
+}
+
+.rodape-coluna ul li {
+    margin-bottom: 0.5rem;
+}
+
+.rodape-coluna ul a {
+    text-decoration: none;
+    color: var(--cor-branca);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.rodape-coluna ul a:hover {
+    opacity: 1;
+}
+
+.rodape-copyright {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rodape-copyright p {
+    color: var(--cor-branca);
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+/* Ajuste responsivo para o rodapé */
+@media (max-width: 700px) {
+    .rodape-grid {
+        /* Empilha as colunas no celular */
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+/* ===== ESTILOS DO DASHBOARD (INDEX DO GERENTE) ===== */
+
+.dashboard-secao {
+    padding: 3rem 0;
+}
+
+.subtitulo-dash {
+    color: var(--cor-muted, #8492a6);
+    font-size: 1.1rem;
+    margin-top: -1rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    /* Grid responsivo:
+      Tenta criar colunas de 350px,
+      mas se não couber, quebra a linha.
+    */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.dash-card {
+    background: var(--cor-branca);
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    padding: 2rem;
+}
+
+/* Card grande (para a lista) */
+.dash-card-grande {
+    /* Em telas grandes (acima de 770px), 
+      faz o card da lista ocupar a linha inteira.
+    */
+    @media (min-width: 770px) {
+        grid-column: 1 / -1; /* Ocupa todas as colunas */
+    }
+}
+
+.dash-card h3 {
+    font-size: 1.25rem;
+    color: var(--cor-texto);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/* O número de destaque (ex: "5") */
+.dash-numero {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--cor-primaria);
+    line-height: 1.1;
+}
+
+.dash-card p {
+    color: var(--cor-muted, #8492a6);
+    margin-top: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Lista de resumo dentro do card */
+.dash-lista-resumo {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Reutilizando o estilo .agendamento-item 
+  que já criámos para a página da agenda 
+*/
+.dash-lista-resumo .agendamento-item {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+/* ===== ESTILOS DA PÁGINA DE CLIENTES ===== */
+/* ... (outros estilos) ... */
+
+.form-divisor {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 1rem 0 0.5rem;
+}
+
+/* ================================================
+  AQUI ESTÁ O CÓDIGO QUE FALTAVA
+  (Adicione este bloco)
+  ================================================
+*/
+
+/* Reutiliza o estilo dos formulários da agenda/vacinas */
+.formulario-cliente .form-grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-cliente .form-grupo label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    color: var(--cor-texto);
+}
+
+.formulario-cliente .form-grupo input {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--cor-secundaria);
+}
+
+/* Coluna da Lista */
+.filtro-cliente {
+    /* Reutiliza o estilo do filtro de vacinas */
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--cor-branca);
+    box-shadow: 0 4px 10px rgba(0,0,0,.03);
+    margin-bottom: 1rem;
+}
+
+.lista-clientes-scroll {
+    max-height: 80vh; /* Altura máxima */
+    overflow-y: auto; /* Scroll vertical */
+    padding-right: 0.5rem; /* Espaço para o scroll */
+}
+
+/* Card de Cliente (na lista) */
+.cliente-card {
+    background: var(--cor-branca);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.05);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+}
+
+.cliente-card:hover {
+    box-shadow: 0 6px 15px rgba(0,0,0,.08);
+    transform: translateY(-2px);
+    cursor: pointer; /* Indica que pode ser clicável (para edição futura) */
+}
+
+.cliente-info h4 {
+    color: var(--cor-primaria);
+    margin: 0 0 0.25rem;
+    font-size: 1.2rem;
+}
+
+.cliente-info p {
+    color: var(--cor-muted, #8492a6);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.cliente-pets {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.cliente-pets span {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.pet-tag {
+    background: var(--cor-secundaria);
+    color: var(--cor-texto);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+}
+
+/* Ajustes responsivos para a pág. de clientes */
+@media (max-width: 900px) {
+    .clientes-grid {
+        grid-template-columns: 1fr; /* Empilha as colunas */
+    }
+
+    .lista-coluna {
+        margin-top: 2rem;
+    }
+}
+

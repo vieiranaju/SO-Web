@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Banho e Tosa - Petshop</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="conteiner">
+            <a href="index.html" class="logo">Petshop</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Painel</a></li>
+                    <li><a href="agenda.html" class="ativo">Agenda</a></li>
+                    <li><a href="vacinas.html">Vacinas</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="agenda-secao">
+        <div class="conteiner">
+            <div class="agenda-header">
+                <h2>Agenda de Banho e Tosa</h2>
+                <a href="#novo-agendamento" class="botao-principal">Novo Agendamento</a>
+            </div>
+            <div class="agenda-grid">
+                <div class="calendario-container">
+                    <div class="calendario-header">
+                        <button class="nav-mes" id="mes-anterior">&larr;</button>
+                        <h3 id="mes-ano-atual">Carregando...</h3>
+                        <button class="nav-mes" id="proximo-mes">&rarr;</button>
+                    </div>
+                    <div class="calendario-dias">
+                        <div class="dia-semana">Dom</div>
+                        <div class="dia-semana">Seg</div>
+                        <div class="dia-semana">Ter</div>
+                        <div class="dia-semana">Qua</div>
+                        <div class="dia-semana">Qui</div>
+                        <div class="dia-semana">Sex</div>
+                        <div class="dia-semana">Sáb</div>
+                    </div>
+                </div>
+                <div class="lista-agendamentos">
+                    <h3 id="horarios-titulo">Selecione um dia</h3>
+                    <div id="horarios-lista">
+                        <p>Nenhum dia selecionado.</p>
+                    </div>
+                </div>
+            </div>
+
+            <section id="novo-agendamento" class="sobre-nos-secao" style="margin-top: 3rem; background: var(--cor-branca);">
+                <div class="sobre-nos-grid">
+                    <div class="sobre-nos-texto">
+                        <h2>Agendar um Horário</h2>
+                        <p>Selecione um horário vago na lista para preencher os detalhes do agendamento.</p>
+                        
+                        <form id="form-agendamento" class="formulario-agenda">
+                            
+                            <div class="form-grupo">
+                                <label for="pet-select-agenda">Pet:</label>
+                                <select id="pet-select-agenda" name="pet_id" required>
+                                    <option value="" disabled selected>Selecione um pet...</option>
+                                    <option value="1">Max (Golden) - (Dona: Ana Silva)</option>
+                                    <option value="2">Luna (Poodle) - (Dona: Ana Silva)</option>
+                                    <option value="3">Thor (Bulldog) - (Dono: Bruno Costa)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-grupo">
+                                <label for="servico">Serviço:</label>
+                                <select id="servico" name="servico" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Banho">Banho</option>
+                                    <option value="Tosa">Tosa</option>
+                                    <option value="Banho e Tosa">Banho e Tosa</option>
+                                    <option value="Tosa Higiênica">Tosa Higiênica</option>
+                                </select>
+                            </div>
+                            <div class="form-grupo">
+                                <label for="data">Data:</label>
+                                <input type="date" id="data" name="data" required readonly>
+                            </div>
+                            <div class="form-grupo">
+                                <label for="hora">Hora:</label>
+                                <input type="time" id="hora" name="hora" required readonly>
+                            </div>
+                            
+                            <button type="submit" class="botao-principal" style="border: none; cursor: pointer;">Confirmar Agendamento</button>
+                        </form>
+
+                    </div>
+                    <div class="sobre-nos-imagem">
+                        <img src="Figuras/agendamento.png" alt="Calendáio e pet">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rodape" id="contato">...</footer>
+    
+    <script src="JS/agenda.js" defer></script>
+
+</body>
+</html>

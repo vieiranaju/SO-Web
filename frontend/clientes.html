@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Clientes - Petshop</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="conteiner">
+            <a href="index.html" class="logo">Petshop</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Painel</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="vacinas.html">Vacinas</a></li>
+                    <li><a href="clientes.html" class="ativo">Clientes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="agenda-secao"> <div class="conteiner">
+
+            <div class="agenda-header">
+                <h2>Gestão de Clientes e Pets</h2>
+            </div>
+
+            <div class="clientes-grid">
+
+                <div id="novo-cliente" class="form-coluna">
+                    <div class="dash-card">
+                        <h3>Adicionar Novo Cliente</h3>
+                        <form id="form-cliente" class="formulario-cliente">
+                            <div class="form-grupo">
+                                <label for="nome-dono">Nome do Dono:</label>
+                                <input type="text" id="nome-dono" name="nome_dono" required>
+                            </div>
+                            <div class="form-grupo">
+                                <label for="telefone-dono">Telefone:</label>
+                                <input type="tel" id="telefone-dono" name="telefone_dono" placeholder="(XX) XXXXX-XXXX">
+                            </div>
+                            <div class="form-grupo">
+                                <label for="email-dono">Email (Opcional):</label>
+                                <input type="email" id="email-dono" name="email_dono">
+                            </div>
+                            
+                            <hr class="form-divisor">
+                            
+                            <h4>Adicionar Pet</h4>
+                            <div class="form-grupo">
+                                <label for="nome-pet-form">Nome do Pet:</label>
+                                <input type="text" id="nome-pet-form" name="nome_pet" required>
+                            </div>
+                            <div class="form-grupo-grid2">
+                                <div class="form-grupo">
+                                    <label for="raca-pet">Raça:</label>
+                                    <input type="text" id="raca-pet" name="raca_pet" placeholder="Ex: Golden">
+                                </div>
+                                <div class="form-grupo">
+                                    <label for="idade-pet">Idade (anos):</label>
+                                    <input type="number" id="idade-pet" name="idade_pet" min="0">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="botao-principal" style="border: none; cursor: pointer; width: 100%; margin-top: 1rem;">
+                                Salvar Cliente e Pet
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="lista-coluna">
+                    <input type="text" id="busca-cliente" class="filtro-cliente" placeholder="Buscar cliente por nome ou pet...">
+                    
+                    <div id="lista-clientes-container" class="lista-clientes-scroll">
+                        <div class="cliente-card">
+                            <div class="cliente-info">
+                                <h4>Ana Silva</h4>
+                                <p>(11) 98888-7777</p>
+                            </div>
+                            <div class="cliente-pets">
+                                <span>Pets:</span>
+                                <span class="pet-tag">Max (Golden)</span>
+                                <span class="pet-tag">Luna (Poodle)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cliente-card">
+                            <div class="cliente-info">
+                                <h4>Bruno Costa</h4>
+                                <p>(21) 97777-6666</p>
+                            </div>
+                            <div class="cliente-pets">
+                                <span>Pets:</span>
+                                <span class="pet-tag">Thor (Bulldog)</span>
+                            </div>
+                        </div>
+                        
+                        </div>
+                </div>
+
+            </div> </div>
+    </main>
+
+    <footer class="rodape" id="contato">
+        <div class="conteiner">
+            <div class="rodape-grid">
+                
+                <div class="rodape-coluna">
+                    <a href="index.html" class="logo">Petshop</a>
+                    <p>Cuidado e carinho para seu melhor amigo.</p>
+                </div>
+                
+                <div class="rodape-coluna">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                         <li><a href="index.html">Painel</a></li>
+                        <li><a href="agenda.html">Agenda</a></li>
+                        <li><a href="vacinas.html">Vacinas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="rodape-coluna">
+                    <h4>Entre em Contato</h4>
+                    <p>Estamos na (Sua Rua), número 123.</p>
+                    <p>contato@petshop.com</p>
+                </div>
+
+            </div>
+            <div class="rodape-copyright">
+                <p>© 2025 - Sistema de Gerenciamento Petshop</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="JS/clientes.js" defer></script>
+
+</body>
+</html>

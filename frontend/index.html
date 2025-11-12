@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Petshop Admin</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="conteiner">
+            <a href="index.html" class="logo">Petshop</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="ativo">Painel</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="vacinas.html">Vacinas</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hero">
+        <div class="conteudo-hero">
+            <h1>Bem-vindo, Gerente!</h1>
+            <p style="margin: 1rem auto 2rem; max-width: 600px;">
+                Acesse seus módulos de gestão ou veja um resumo do dia abaixo.
+            </p>
+            <a href="agenda.html" class="botao-principal">Ir para a Agenda</a>
+        </div>
+    </main>
+
+    <section class="dashboard-secao">
+        <div class="conteiner">
+
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">Resumo do Dia</h2>
+
+            <div class="dashboard-grid">
+
+                <div class="dash-card">
+                    <h3>Agendamentos de Hoje</h3>
+                    <div class="dash-numero">5</div>
+                    <p>3 confirmados, 2 pendentes</p>
+                    <a href="agenda.html" class="botao-card" style="background: var(--cor-primaria); color: var(--cor-branca); border: none;">
+                        Ver Agenda Completa
+                    </a>
+                </div>
+
+                <div class="dash-card">
+                    <h3>Vacinas a Vencer</h3>
+                    <div class="dash-numero">2</div>
+                    <p>Próximos 7 dias</p>
+                    <a href="vacinas.html" class="botao-card" style="background: var(--cor-primaria); color: var(--cor-branca); border: none;">
+                        Ver Controlo de Vacinas
+                    </a>
+                </div>
+
+                <div class="dash-card">
+                    <h3>Total de Clientes</h3>
+                    <div class="dash-numero">2</div>
+                    <p>2 clientes e 3 pets cadastrados.</p>
+                    <a href="clientes.html" class="botao-card" style="background: var(--cor-primaria); color: var(--cor-branca); border: none;">
+                        Gerenciar Clientes
+                    </a>
+                </div>
+
+                <div class="dash-card dash-card-grande">
+                    <h3>Próximos Horários</h3>
+                    <div class="dash-lista-resumo">
+                        <div class="agendamento-item">
+                            <span class="hora">09:00</span>
+                            <span class="nome-pet">Max (Golden)</span>
+                            <span class="servico">Banho e Tosa</span>
+                        </div>
+                        <div class="agendamento-item">
+                            <span class="hora">10:30</span>
+                            <span class="nome-pet">Luna (Poodle)</span>
+                            <span class="servico">Banho</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="rodape" id="contato">
+        <div class="conteiner">
+            <div class="rodape-grid">
+                
+                <div class="rodape-coluna">
+                    <a href="index.html" class="logo">Petshop</a>
+                    <p>Cuidado e carinho para seu melhor amigo.</p>
+                </div>
+                
+                <div class="rodape-coluna">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Painel</a></li>
+                        <li><a href="agenda.html">Agenda</a></li>
+                        <li><a href="vacinas.html">Vacinas</a></li>
+                         <li><a href="clientes.html">Clientes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="rodape-coluna">
+                    <h4>Entre em Contato</h4>
+                    <p>Estamos na (Sua Rua), número 123.</p>
+                    <p>contato@petshop.com</p>
+                </div>
+
+            </div>
+            <div class="rodape-copyright">
+                <p>© 2025 - Sistema de Gerenciamento Petshop</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
