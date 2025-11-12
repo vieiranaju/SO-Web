@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Vacinas - Petshop</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="conteiner">
+            <a href="index.html" class="logo">Petshop</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Painel</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="vacinas.html" class="ativo">Vacinas</a></li>
+                    <li><a href="clientes.html">Clientes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="agenda-secao">
+        <div class="conteiner">
+            <div class="agenda-header">
+                <h2>Controle de Vacinas</h2>
+                <a href="#novo-registro" class="botao-principal">Adicionar Registro</a>
+            </div>
+            <div class="filtro-container">
+                <input type="text" id="busca-pet" placeholder="Buscar por nome do pet...">
+            </div>
+            <div class="tabela-container">
+                <table class="tabela-vacinas">
+                    <thead>...</thead>
+                    <tbody id="tabela-corpo">...</tbody>
+                </table>
+            </div>
+
+            <section id="novo-registro" class="sobre-nos-secao" style="margin-top: 3rem; background: var(--cor-laranja-claro);">
+                <div class="sobre-nos-grid">
+                    
+                    <div class="sobre-nos-imagem">
+                        <img src="Figuras/img-vacina-para-caes.png" alt="Vacinação de pet">
+                    </div>
+
+                    <div class="sobre-nos-texto">
+                        <h2>Adicionar Novo Registro</h2>
+                        
+                        <form id="form-vacina" class="formulario-agenda">
+                            
+                            <div class="form-grupo">
+                                <label for="pet-select-vacina">Pet:</label>
+                                <select id="pet-select-vacina" name="pet_id" required>
+                                    <option value="" disabled selected>Selecione um pet...</option>
+                                    <option value="1">Max (Golden) - (Dona: Ana Silva)</option>
+                                    <option value="2">Luna (Poodle) - (Dona: Ana Silva)</option>
+                                    <option value="3">Thor (Bulldog) - (Dono: Bruno Costa)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-grupo">
+                                <label for="nome-vacina">Nome da Vacina:</label>
+                                <input type="text" id="nome-vacina" name="nome_vacina" required>
+                            </div>
+                            <div class="form-grupo">
+                                <label for="data-aplicacao">Data da Aplicação:</label>
+                                <input type="date" id="data-aplicacao" name="data_aplicacao" required>
+                            </div>
+                            <div class="form-grupo">
+                                <label for="proxima-dose">Próxima Dose (Opcional):</label>
+                                <input type="date" id="proxima-dose" name="proxima_dose">
+                            </div>
+                            
+                            <button type="submit" class="botao-principal" style="border: none; cursor: pointer; background: var(--cor-laranja);">Salvar Registro</button>
+                        </form>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rodape" id="contato">...</footer>
+
+    <script src="JS/vacinas.js" defer></script>
+
+</body>
+</html>
