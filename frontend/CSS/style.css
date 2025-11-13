@@ -1046,3 +1046,21 @@ body {
     }
 }
 
+/* ===== FIX PARA A LISTA DE AGENDA ===== */
+/* Estilo para o 'cartão' quando está ocupado */
+.agendamento-item.ocupado {
+    opacity: 0.5;
+    background: #f7f7f7;
+    cursor: not-allowed;
+}
+
+.agendamento-item.ocupado:hover {
+    transform: none;
+    box-shadow: var(--sombra-suave);
+    background: #f7f7f7;
+    color: var(--cor-texto);
+}
+
+.agendamento-item.ocupado .hora {
+    color: var(--cor-muted);
+}

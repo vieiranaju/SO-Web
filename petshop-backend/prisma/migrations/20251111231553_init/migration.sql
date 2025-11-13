@@ -24,5 +24,15 @@ CREATE TABLE "Agendamento" (
     CONSTRAINT "Agendamento_servicoId_fkey" FOREIGN KEY ("servicoId") REFERENCES "Servico" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+-- CreateTable
+CREATE TABLE "Vacina" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nomeVacina" TEXT NOT NULL,
+    "dataAplicacao" DATETIME NOT NULL,
+    "proximaDose" DATETIME,
+    "petId" INTEGER NOT NULL,
+    CONSTRAINT "Vacina_petId_fkey" FOREIGN KEY ("petId") REFERENCES "Pet" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Servico_nome_key" ON "Servico"("nome");
