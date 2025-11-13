@@ -1,12 +1,14 @@
 // index.js
+const cors = require('cors');
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 
 // --- Inicialização ---
 const prisma = new PrismaClient();
 const app = express();
+app.use(cors());
 app.use(express.json()); 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   if (req.method === 'OPTIONS') {
@@ -14,20 +16,28 @@ app.use((req, res, next) => {
     return res.sendStatus(200);
   }
   next();
-});
+});*/
 const PORT = 3000;
 
-// ===== PETS (IGUAL A ANTES) =====
+// ===== PETS (CORRIGIDO) =====
 app.post('/pets', async (req, res) => {
-  try {
-    const { nome, raca, dono } = req.body;
-    const pet = await prisma.pet.create({
-      data: { nome, raca, dono },
-    });
-    res.status(201).json(pet);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+  try {
+    // 1. AQUI ESTAVA O ERRO: Adicione 'idade' nesta lista
+    const { nome, raca, dono, idade } = req.body; 
+
+    const pet = await prisma.pet.create({
+      data: { 
+        nome, 
+        raca, 
+        dono, 
+        // 2. Agora sim a variável existe e pode ser usada
+        idade: idade ? parseInt(idade) : null 
+      },
+    });
+    res.status(201).json(pet);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 app.get('/pets', async (req, res) => {

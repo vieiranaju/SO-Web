@@ -1,6 +1,7 @@
 // 1. Configuração do Cliente
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
 }
 
 // 2. Configuração do Banco de Dados
@@ -15,6 +16,7 @@ model Pet {
   nome  	String
   raca  	String?
   dono  	String
+  idade Int
   agendamentos Agendamento[]
   
   // --- AQUI ESTÁ A LINHA QUE FALTAVA ---
