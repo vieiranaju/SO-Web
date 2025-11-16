@@ -136,16 +136,13 @@ function PaginaAgenda() {
     }
 
     try {
-      // 1. Encontra o Objeto 'Serviço' (lógica igual à antiga)
+      // 1. Encontra o Objeto 'Serviço'
       let servicoObj = servicosCache.find(s => s.nome === formData.servicoNome);
+
+      // 2. Validação: O serviço DEVE existir (não o criamos mais aqui)
       if (!servicoObj) {
-        const createRes = await fetch(`${API_URL}/servicos`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nome: formData.servicoNome, preco: 0 })
-        });
-        if (!createRes.ok) throw new Error('Falha ao criar novo serviço');
-        servicoObj = await createRes.json();
-        setServicosCache(cacheAntigo => [...cacheAntigo, servicoObj]); 
+          alert('Serviço não encontrado. Por favor, cadastre o serviço primeiro na página "Serviços".');
+          return; // Para a execução
       }
 
       // 2. Monta o Payload
