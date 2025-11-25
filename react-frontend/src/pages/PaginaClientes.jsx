@@ -4,17 +4,17 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 const API_URL = 'http://localhost:8080';
 
 function PaginaClientes() {
-  
+
   // --- [ ESTADOS ] ---
   const [pets, setPets] = useState([]);
   const [termoBusca, setTermoBusca] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // NOVO: Estado para guardar o pet que estamos a editar
-  const [petEmEdicao, setPetEmEdicao] = useState(null); 
-  
+  const [petEmEdicao, setPetEmEdicao] = useState(null);
+
   // NOVO: Referência ao topo do formulário (para rolar a tela)
-  const formRef = useRef(null); 
+  const formRef = useRef(null);
 
   const [formState, setFormState] = useState({
     nomeDono: '',
@@ -31,7 +31,7 @@ function PaginaClientes() {
       // (O seu 'useEffect' de carregar os pets continua igual...)
       setIsLoading(true);
       try {
-        const res = await fetch(`${API_URL}/pets`); 
+        const res = await fetch(`${API_URL}/pets`);
         if (!res.ok) throw new Error('Falha ao carregar pets');
         const data = await res.json();
         setPets(data);
@@ -43,7 +43,7 @@ function PaginaClientes() {
       }
     };
     fetchPets();
-  }, []); 
+  }, []);
 
   // --- [ HANDLERS (Formulário) ] ---
   const handleFormChange = (e) => {
@@ -53,7 +53,7 @@ function PaginaClientes() {
       [name]: value
     }));
   };
-  
+
   // NOVO: Função para limpar o formulário e sair do modo de edição
   const resetFormulario = () => {
     setFormState({
@@ -65,19 +65,19 @@ function PaginaClientes() {
 
   // --- [ HANDLER DE SUBMISSÃO (Agora com Lógica de EDITAR) ] ---
   const handleSubmit = async (evento) => {
-    evento.preventDefault(); 
+    evento.preventDefault();
 
     if (formState.nomeDono.length < 3) {
       alert("O nome do dono deve ter pelo menos 3 letras!");
-      return; 
+      return;
     }
-    
+
     // Payload (o que o back-end espera)
     const payload = {
       nome: formState.nomePet,
       raca: formState.racaPet || 'SRD',
       dono: formState.nomeDono,
-      idade: Number(formState.idadePet) || 0 
+      idade: Number(formState.idadePet) || 0
       // (O seu back-end 'index.js' já aceita estes campos no 'app.put')
     };
 
@@ -88,7 +88,7 @@ function PaginaClientes() {
     try {
       let url = `${API_URL}/pets`;
       let method = 'POST';
-      
+
       // Se estamos a editar, mude a URL e o Método
       if (petEmEdicao) {
         url = `${API_URL}/pets/${petEmEdicao.id}`;
@@ -100,33 +100,38 @@ function PaginaClientes() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      if (!res.ok) throw new Error(`Erro na operação: ${res.status}`);
-      
+
+      if (!res.ok) {
+        // Tenta pegar a mensagem de erro do backend
+        const errorData = await res.json().catch(() => ({ error: 'Erro desconhecido' }));
+        throw new Error(errorData.error || `Erro na operação: ${res.status}`);
+      }
+
       const petAtualizado = await res.json();
-      
+
       // Magia do React: Atualiza a lista na tela
       if (petEmEdicao) {
         // Se editou, substitua o item antigo pelo novo
-        setPets(listaAntiga => listaAntiga.map(pet => 
+        setPets(listaAntiga => listaAntiga.map(pet =>
           pet.id === petEmEdicao.id ? petAtualizado : pet
         ));
         alert('Pet atualizado com sucesso!');
       } else {
         // Se criou, adicione o novo item
-        setPets(listaAntiga => [...listaAntiga, petAtualizado]); 
+        setPets(listaAntiga => [...listaAntiga, petAtualizado]);
         alert('Salvo com sucesso!');
       }
-      
+
       resetFormulario(); // Limpa o formulário e sai do modo de edição
 
     } catch (err) {
       console.error(err);
-      alert('Erro ao salvar. Verifique o console.');
+      alert(err.message || 'Erro ao salvar. Verifique o console.');
     }
   };
 
   // --- [ HANDLERS (Ações do Card) ] ---
-  
+
   // (O seu 'handleDelete' continua igual)
   const handleDelete = async (idDoPet) => {
     if (confirm("Tem certeza que deseja excluir este pet?")) {
@@ -144,12 +149,12 @@ function PaginaClientes() {
       }
     }
   };
-  
+
   // NOVO: Função para preencher o formulário para edição
   const handleEditarClick = (pet) => {
     // 1. Coloca o pet no estado de "edição"
     setPetEmEdicao(pet);
-    
+
     // 2. Preenche o formulário com os dados do pet
     setFormState({
       nomeDono: pet.dono,
@@ -159,7 +164,7 @@ function PaginaClientes() {
       email: '',    // Então eles ficam vazios
       idadePet: ''
     });
-    
+
     // 3. Rola a tela até o formulário
     formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -174,18 +179,18 @@ function PaginaClientes() {
       acc[pet.dono].pets.push(pet);
       return acc;
     }, {});
-    
+
     const listaDeDonos = Object.values(donosAgrupados);
-    
+
     if (!termoBusca) return listaDeDonos;
     return listaDeDonos.filter(dono => {
       const texto = `${dono.nome} ${dono.pets.map(p => p.nome).join(' ')}`.toLowerCase();
       return texto.includes(termoBusca.toLowerCase());
     });
-    
+
   }, [pets, termoBusca]);
-  
-  
+
+
   // 8. O JSX (O seu "HTML" com dados reais)
   return (
     <div className="agenda-secao" style={{ padding: '2rem 0' }}>
@@ -197,63 +202,63 @@ function PaginaClientes() {
 
           {/* ===== [COLUNA 1: FORMULÁRIO "CONTROLADO"] ===== */}
           {/* NOVO: 'ref' para podermos rolar a tela até ele */}
-          <div id="novo-cliente" className="form-coluna" ref={formRef}> 
+          <div id="novo-cliente" className="form-coluna" ref={formRef}>
             <div className="dash-card">
               {/* NOVO: Título dinâmico */}
               <h3>{petEmEdicao ? 'Editar Pet' : 'Adicionar Novo Cliente'}</h3>
-              
+
               <form id="form-cliente" className="formulario-cliente" onSubmit={handleSubmit}>
-                
+
                 {/* --- [Grupo Dono] --- */}
                 <div className="form-grupo">
                   <label htmlFor="nome-dono">Nome do Dono:</label>
-                  <input type="text" id="nome-dono" name="nomeDono" required 
-                         value={formState.nomeDono} onChange={handleFormChange} />
+                  <input type="text" id="nome-dono" name="nomeDono" required
+                    value={formState.nomeDono} onChange={handleFormChange} />
                 </div>
                 {/* (Inputs de Telefone e Email - continuam iguais) */}
                 <div className="form-grupo">
                   <label htmlFor="telefone-dono">Telefone:</label>
                   <input type="tel" id="telefone-dono" name="telefone" placeholder="(XX) XXXXX-XXXX"
-                         value={formState.telefone} onChange={handleFormChange} />
+                    value={formState.telefone} onChange={handleFormChange} />
                 </div>
                 <div className="form-grupo">
                   <label htmlFor="email-dono">Email (Opcional):</label>
                   <input type="email" id="email-dono" name="email"
-                         value={formState.email} onChange={handleFormChange} />
+                    value={formState.email} onChange={handleFormChange} />
                 </div>
-                
+
                 <hr className="form-divisor" />
-                
+
                 {/* --- [Grupo Pet] --- */}
                 <h4>{petEmEdicao ? `Editando: ${petEmEdicao.nome}` : 'Adicionar Pet'}</h4>
                 <div className="form-grupo">
                   <label htmlFor="nome-pet-form">Nome do Pet:</label>
                   <input type="text" id="nome-pet-form" name="nomePet" required
-                         value={formState.nomePet} onChange={handleFormChange} />
+                    value={formState.nomePet} onChange={handleFormChange} />
                 </div>
                 <div className="form-grupo-grid2">
                   <div className="form-grupo">
                     <label htmlFor="raca-pet">Raça:</label>
                     <input type="text" id="raca-pet" name="racaPet" placeholder="Ex: Golden"
-                           value={formState.racaPet} onChange={handleFormChange} />
+                      value={formState.racaPet} onChange={handleFormChange} />
                   </div>
                   <div className="form-grupo">
                     <label htmlFor="idade-pet">Idade (anos):</label>
                     <input type="number" id="idade-pet" name="idadePet" min="0"
-                           value={formState.idadePet} onChange={handleFormChange} />
+                      value={formState.idadePet} onChange={handleFormChange} />
                   </div>
                 </div>
-                
+
                 {/* NOVO: Botão dinâmico */}
                 <button type="submit" className="botao-principal" style={{ border: 'none', cursor: 'pointer', width: '100%', marginTop: '1rem' }}>
                   {petEmEdicao ? 'Atualizar Pet' : 'Salvar Cliente e Pet'}
                 </button>
-                
+
                 {/* NOVO: Botão de Cancelar Edição (só aparece se estiver editando) */}
                 {petEmEdicao && (
-                  <button type="button" className="botao-secundario" 
-                          onClick={resetFormulario}
-                          style={{ border: 'none', cursor: 'pointer', width: '100%', marginTop: '0.5rem' }}>
+                  <button type="button" className="botao-secundario"
+                    onClick={resetFormulario}
+                    style={{ border: 'none', cursor: 'pointer', width: '100%', marginTop: '0.5rem' }}>
                     Cancelar Edição
                   </button>
                 )}
@@ -263,14 +268,14 @@ function PaginaClientes() {
 
           {/* ===== [COLUNA 2: LISTA "DINÂMICA"] ===== */}
           <div className="lista-coluna">
-            <input 
-              type="text" id="busca-cliente" className="filtro-cliente" 
+            <input
+              type="text" id="busca-cliente" className="filtro-cliente"
               placeholder="Buscar cliente por nome ou pet..."
               value={termoBusca} onChange={(e) => setTermoBusca(e.target.value)}
             />
-            
+
             <div id="lista-clientes-container" className="lista-clientes-scroll">
-              
+
               {/* (Lógica de 'isLoading' e 'lista vazia' continua igual) */}
               {isLoading && <p>Carregando clientes...</p>}
               {!isLoading && listaDonosFiltrada.length === 0 && (
@@ -290,18 +295,18 @@ function PaginaClientes() {
                     {dono.pets.map(pet => (
                       <div className="pet-tag" key={pet.id} style={{ display: 'inline-block', margin: '2px', padding: '5px', background: '#eee', borderRadius: '5px' }}>
                         {pet.nome} <small>({pet.raca || 'SRD'})</small>
-                        
+
                         {/* NOVO: Botão de Editar */}
-                        <span 
+                        <span
                           onClick={() => handleEditarClick(pet)}
                           style={{ cursor: 'pointer', color: 'blue', marginLeft: '10px', fontWeight: 'bold' }}
                         >
                           ✎
                         </span>
-                        
+
                         {/* Botão de Excluir (continua igual) */}
-                        <span 
-                          onClick={() => handleDelete(pet.id)} 
+                        <span
+                          onClick={() => handleDelete(pet.id)}
                           style={{ cursor: 'pointer', color: 'red', marginLeft: '5px', fontWeight: 'bold' }}
                         >
                           &times;
