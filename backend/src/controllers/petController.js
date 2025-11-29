@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// GET ALL (Já estava correto)
+// GET ALL
 exports.getAll = async (req, res) => {
   const pets = await prisma.pet.findMany({
     include: { vacinas: true, agendamentos: true }
@@ -9,7 +9,7 @@ exports.getAll = async (req, res) => {
   res.json(pets);
 };
 
-// GET BY ID (Já estava correto)
+// GET BY ID
 exports.getById = async (req, res) => {
   try {
     const pet = await prisma.pet.findUnique({
@@ -23,8 +23,9 @@ exports.getById = async (req, res) => {
   }
 };
 
-// CREATE (Corrigido: Adiciona 'include' e 'try...catch')
+// CREATE
 exports.create = async (req, res) => {
+  console.log('Recebendo requisição de pet:', req.body);
   try {
     // Validação: Verifica se já existe um pet com o mesmo nome (case-insensitive) para o mesmo dono
     const existingPets = await prisma.pet.findMany({
@@ -36,6 +37,7 @@ exports.create = async (req, res) => {
     );
 
     if (isDuplicate) {
+      console.warn('Tentativa de criar pet duplicado:', req.body);
       return res.status(400).json({
         error: 'Já existe um pet com este nome para este dono'
       });
@@ -45,13 +47,15 @@ exports.create = async (req, res) => {
       data: req.body,
       include: { vacinas: true, agendamentos: true } // Devolve o objeto completo
     });
+    console.log('Pet criado com sucesso:', pet);
     res.status(201).json(pet);
   } catch (error) {
+    console.error('Erro ao criar pet:', error);
     res.status(400).json({ error: error.message });
   }
 };
 
-// UPDATE (Corrigido: Adiciona 'include' e 'try...catch')
+// UPDATE
 exports.update = async (req, res) => {
   try {
     // Validação: Verifica se já existe outro pet com o mesmo nome (case-insensitive) para o mesmo dono
@@ -81,7 +85,7 @@ exports.update = async (req, res) => {
   }
 };
 
-// REMOVE (Corrigido: Adiciona 'try...catch')
+// REMOVE
 exports.remove = async (req, res) => {
   try {
     await prisma.pet.delete({ where: { id: Number(req.params.id) } });

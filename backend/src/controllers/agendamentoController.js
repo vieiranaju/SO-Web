@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// GET ALL (Já estava correto)
+// GET ALL
 exports.getAll = async (req, res) => {
   const agendamentos = await prisma.agendamento.findMany({
     include: { pet: true, servico: true }
@@ -9,7 +9,7 @@ exports.getAll = async (req, res) => {
   res.json(agendamentos);
 };
 
-// GET BY ID (Já estava correto)
+// GET BY ID
 exports.getById = async (req, res) => {
   const agendamento = await prisma.agendamento.findUnique({
     where: { id: Number(req.params.id) },
@@ -19,12 +19,18 @@ exports.getById = async (req, res) => {
   res.json(agendamento);
 };
 
-// CREATE (Corrigido: Converte os dados e inclui a resposta)
+// CREATE
 exports.create = async (req, res) => {
+  console.log('Recebendo requisição de agendamento:', req.body);
   try {
     const { petId, servicoId, dataHora, status } = req.body;
 
-    const agendamento = await prisma.agendamento.create({ 
+    if (!petId || !servicoId || !dataHora) {
+      console.error('Dados incompletos:', req.body);
+      return res.status(400).json({ error: 'Dados incompletos: petId, servicoId e dataHora são obrigatórios.' });
+    }
+
+    const agendamento = await prisma.agendamento.create({
       data: {
         petId: parseInt(petId),
         servicoId: parseInt(servicoId),
@@ -33,14 +39,16 @@ exports.create = async (req, res) => {
       },
       include: { pet: true, servico: true } // Devolve os nomes para o React
     });
+    console.log('Agendamento criado com sucesso:', agendamento);
     res.status(201).json(agendamento);
-    
+
   } catch (error) {
+    console.error('Erro ao criar agendamento:', error);
     res.status(400).json({ error: error.message });
   }
 };
 
-// UPDATE (Corrigido: Converte os dados e inclui a resposta)
+// UPDATE
 exports.update = async (req, res) => {
   try {
     const { petId, servicoId, dataHora, status } = req.body;
@@ -56,13 +64,13 @@ exports.update = async (req, res) => {
       include: { pet: true, servico: true } // Devolve os nomes para o React
     });
     res.json(agendamento);
-    
+
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-// REMOVE (Corrigido: Adiciona 'try...catch' por segurança)
+// REMOVE
 exports.remove = async (req, res) => {
   try {
     await prisma.agendamento.delete({ where: { id: Number(req.params.id) } });
