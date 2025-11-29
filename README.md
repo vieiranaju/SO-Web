@@ -114,23 +114,19 @@ A arquitetura é definida no arquivo `docker-compose.yml`, onde cada serviço (F
 
 1.  Clone este repositório:
     ```bash
-    git clone [URL_DO_SEU_REPOSITORIO_GIT]
+    git clone (https://github.com/vieiranaju/SO)
     ```
 
-2.  Navegue até a pasta raiz do projeto:
-    ```bash
-    cd [NOME_DA_PASTA_DO_PROJETO]
-    ```
+2.  (Opcional) Configure as variáveis de ambiente (ex: crie um arquivo `.env`).
 
-3.  (Opcional) Configure as variáveis de ambiente (ex: crie um arquivo `.env`).
-
-4.  Suba os contêineres:
+3.  Suba os contêineres:
     ```bash
     docker-compose up -d --build
     ```
     * O comando `-d` executa em segundo plano.
     * O `--build` força a reconstrução das imagens.
 
-5.  Acesse a aplicação:
+4.  Acesse a aplicação:
     * **Frontend:** `http://localhost:5173`
     * **Backend (API):** `http://localhost:8080`
+    * **Banco de Dados (PGAdmin):** `http://localhost:5050`
